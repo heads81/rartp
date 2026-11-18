@@ -6,282 +6,309 @@
 <title>ISMS Risk Treatment Manager</title>
 <style>
   :root {
-    --bg: #1b1d21;
-    --panel: #24272c;
-    --panel-2: #2b2f35;
-    --border: #3a3f47;
-    --text: #e6e8eb;
-    --muted: #9aa1ab;
-    --accent: #4ea1ff;
-    --green: #3ecf8e;
-    --amber: #f0b34a;
-    --red: #e5646c;
+    --page-bg: #eef1f6;
+    --card: #ffffff;
+    --border: #e3e7ee;
+    --navy: #1e3a8a;
+    --navy-deep: #172d6e;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --blue: #2f80ed;
+    --green: #27ae60;
+    --yellow: #f2c94c;
+    --red: #eb5757;
+    --soft-blue: #eaf2fd;
+    --soft-green: #e8f7ee;
+    --soft-yellow: #fdf6e0;
+    --soft-red: #fdecec;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: var(--bg);
+    background: var(--page-bg);
     color: var(--text);
     font-family: "Segoe UI", Inter, system-ui, -apple-system, sans-serif;
     font-size: 14px;
     line-height: 1.45;
-    padding: 24px;
+    padding: 20px;
   }
-  header {
+  .topbar {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
   }
-  header h1 { font-size: 20px; font-weight: 600; letter-spacing: 0.3px; }
-  header .tag {
-    color: var(--muted);
-    font-size: 12px;
-    font-family: ui-monospace, Consolas, monospace;
+  .topbar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2d3446;
   }
-  header .demo-note {
-    margin-left: auto;
-    color: var(--muted);
-    font-size: 11px;
-    font-style: italic;
-  }
+  .topbar .tag { color: var(--muted); font-size: 12px; }
+  .topbar .demo-note { margin-left: auto; color: var(--muted); font-size: 11px; font-style: italic; }
+
   section {
-    background: var(--panel);
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 18px;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(30, 40, 70, 0.06);
   }
-  section h2 {
-    font-size: 13px;
-    font-weight: 600;
+  section > h2 {
+    font-size: 14px;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--accent);
-    margin-bottom: 4px;
+    color: #2d3446;
+    margin-bottom: 2px;
   }
-  section .purpose {
-    color: var(--muted);
-    font-size: 12px;
-    margin-bottom: 12px;
-  }
+  section .purpose { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
 
-  /* Section 1: Risk Register */
-  .register-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-  }
+  /* ---------- Risk Register ---------- */
+  .register-controls { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
   .register-controls input[type="search"] {
-    flex: 1;
-    min-width: 200px;
-    background: var(--panel-2);
+    flex: 1; min-width: 200px;
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     color: var(--text);
-    padding: 8px 10px;
+    padding: 9px 12px;
     font-size: 13px;
     outline: none;
   }
-  .register-controls input[type="search"]:focus { border-color: var(--accent); }
+  .register-controls input[type="search"]:focus { border-color: var(--blue); }
   .register-controls select {
-    background: var(--panel-2);
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     color: var(--text);
-    padding: 8px 10px;
+    padding: 9px 10px;
     font-size: 13px;
   }
-  .register-controls .count {
-    align-self: center;
-    color: var(--muted);
-    font-size: 12px;
-  }
+  .register-controls .count { align-self: center; color: var(--muted); font-size: 12px; }
+
   .risk-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 10px;
+    gap: 12px;
   }
   .risk-card {
-    background: var(--panel-2);
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px;
+    border-radius: 10px;
+    padding: 14px;
     cursor: pointer;
-    transition: border-color 0.15s;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
-  .risk-card:hover { border-color: var(--accent); }
-  .risk-card.selected {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent);
-  }
-  .risk-card .name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-  .risk-card .meta { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .risk-card:hover { border-color: var(--blue); }
+  .risk-card.selected { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(47,128,237,0.25); }
+  .risk-card .name { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: #2d3446; }
+  .risk-card .meta { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
   .risk-card .category {
-    color: var(--muted);
-    font-size: 11px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 4px;
-    padding: 2px 7px;
-    font-family: ui-monospace, Consolas, monospace;
+    color: var(--muted); font-size: 11px;
+    background: #f3f5f9;
+    border: 1px solid var(--border);
+    border-radius: 5px; padding: 2px 8px;
   }
-  .badge {
-    font-size: 11px;
-    border-radius: 4px;
-    padding: 2px 7px;
-    font-weight: 600;
-  }
-  .badge.untreated { color: var(--red); background: rgba(229,100,108,0.12); }
-  .badge.in-progress { color: var(--amber); background: rgba(240,179,74,0.12); }
-  .badge.completed { color: var(--green); background: rgba(62,207,142,0.12); }
+  .badge { font-size: 11px; border-radius: 5px; padding: 2px 8px; font-weight: 700; }
+  .badge.untreated { color: var(--red); background: var(--soft-red); }
+  .badge.in-progress { color: #b7791f; background: var(--soft-yellow); }
+  .badge.completed { color: var(--green); background: var(--soft-green); }
   .risk-card .summary { color: var(--muted); font-size: 12px; }
   .risk-card .plan-line {
-    margin-top: 8px;
-    font-size: 11px;
-    color: var(--accent);
-    font-family: ui-monospace, Consolas, monospace;
+    margin-top: 8px; font-size: 11px; font-weight: 600;
+    color: var(--blue);
   }
   .empty-msg { color: var(--muted); padding: 16px; text-align: center; font-style: italic; }
+
+  /* add risk */
   .add-risk {
-    margin-top: 12px;
-    background: var(--panel-2);
+    margin-top: 14px;
+    background: #f8fafc;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 10px;
     padding: 12px;
   }
-  .add-risk-title { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .add-risk-title {
+    font-size: 12px; font-weight: 700; color: #2d3446;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+  }
   .add-risk-form { display: flex; gap: 8px; flex-wrap: wrap; }
   .add-risk-form input {
-    flex: 1;
-    min-width: 160px;
-    background: var(--bg);
+    flex: 1; min-width: 160px;
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     color: var(--text);
-    padding: 8px 10px;
-    font-size: 13px;
-    outline: none;
+    padding: 8px 10px; font-size: 13px; outline: none;
   }
-  .add-risk-form input:focus { border-color: var(--accent); }
+  .add-risk-form input:focus { border-color: var(--blue); }
   .add-risk-form button {
-    background: var(--accent);
-    color: #10141a;
+    background: var(--navy);
+    color: #fff;
     border: none;
-    border-radius: 6px;
-    padding: 8px 14px;
+    border-radius: 8px;
+    padding: 8px 16px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
   }
-  .add-risk-msg { font-size: 12px; color: var(--red); margin-top: 6px; min-height: 15px; }
+  .add-risk-form button:hover { background: var(--navy-deep); }
+  .add-risk-msg { font-size: 12px; color: var(--red); margin-top: 6px; min-height: 16px; font-weight: 600; }
   .add-risk-msg.ok { color: var(--green); }
 
-  /* Section 2: Treatment Plan */
-  .treatment-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 720px) { .treatment-layout { grid-template-columns: 1fr; } }
-  .treatment-options { display: flex; flex-direction: column; gap: 8px; }
+  /* ---------- Treatment Plan ---------- */
+  .treatment-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; }
+  @media (max-width: 760px) { .treatment-layout { grid-template-columns: 1fr; } }
+  .treatment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 560px) { .treatment-options { grid-template-columns: 1fr; } }
   .treatment-option {
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 12px;
-    cursor: pointer;
-  }
-  .treatment-option:hover { border-color: var(--accent); }
-  .treatment-option.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-  .treatment-option .t-name { font-weight: 600; font-size: 13px; margin-bottom: 2px; }
-  .treatment-option .t-desc { color: var(--muted); font-size: 12px; }
-  .treatment-detail {
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
     padding: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .treatment-option:hover { border-color: var(--blue); }
+  .treatment-option.selected { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(47,128,237,0.2); }
+  .treatment-option .t-name { font-weight: 700; font-size: 13px; margin-bottom: 3px; color: #2d3446; }
+  .treatment-option .t-desc { color: var(--muted); font-size: 11.5px; }
+  .treatment-detail {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 16px;
+    color: #fff;
     display: flex;
     flex-direction: column;
   }
-  .treatment-detail .selected-risk { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
-  .treatment-detail .selected-risk strong { color: var(--text); }
-  .treatment-detail .chosen {
-    flex: 1;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .treatment-detail .chosen .chosen-title { color: var(--green); font-weight: 600; margin-bottom: 4px; }
-  .treatment-detail button {
-    margin-top: 12px;
-    background: var(--accent);
-    color: #10141a;
-    border: none;
+  .treatment-detail .selected-risk { font-size: 12px; color: #c7d4f2; margin-bottom: 10px; }
+  .treatment-detail .selected-risk strong { color: #fff; font-size: 13px; }
+  .treatment-detail .chosen { flex: 1; font-size: 13px; color: #e3eaff; }
+  .treatment-detail .chosen .chosen-title { font-weight: 700; color: #fff; margin-bottom: 4px; font-size: 14px; }
+  .treatment-detail .chosen .chip {
+    display: inline-block;
+    background: var(--yellow);
+    color: #5b4300;
+    font-weight: 700;
+    font-size: 11px;
     border-radius: 6px;
-    padding: 9px 14px;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+  }
+  .treatment-detail button {
+    margin-top: 14px;
+    background: var(--yellow);
+    color: #5b4300;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
   }
-  .treatment-detail button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .treatment-detail button:disabled { opacity: 0.45; cursor: not-allowed; }
 
-  /* Section 3: Status Summary */
-  .summary-layout { display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; gap: 10px; }
-  @media (max-width: 820px) { .summary-layout { grid-template-columns: 1fr 1fr; } }
-  .stat {
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px;
+  /* ---------- Status Summary ---------- */
+  .summary-layout { display: grid; grid-template-columns: 340px 1fr; gap: 16px; }
+  @media (max-width: 860px) { .summary-layout { grid-template-columns: 1fr; } }
+  .progress-card {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .donut-wrap { position: relative; width: 130px; height: 130px; flex: none; }
+  .donut-wrap svg { transform: rotate(-90deg); }
+  .donut-center {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .donut-center .pct { font-size: 24px; font-weight: 700; }
+  .donut-center .pct-label { font-size: 10px; color: #c7d4f2; text-transform: uppercase; letter-spacing: 0.5px; }
+  .progress-info { display: flex; flex-direction: column; gap: 8px; }
+  .progress-info .pi-title { font-weight: 700; font-size: 15px; }
+  .progress-info .chip {
+    align-self: flex-start;
+    background: var(--yellow);
+    color: #5b4300;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 7px;
+    padding: 4px 14px;
+  }
+  .progress-info .pi-sub { font-size: 12px; color: #c7d4f2; }
+  .progress-info .pi-sub strong { color: #fff; }
+
+  .tiles-column { display: flex; flex-direction: column; gap: 12px; }
+  .tiles-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 560px) { .tiles-row { grid-template-columns: 1fr; } }
+  .tile {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px 10px;
     text-align: center;
+    border: 1.5px solid var(--border);
   }
-  .stat .num { font-size: 26px; font-weight: 700; }
-  .stat .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-  .stat.untreated .num { color: var(--red); }
-  .stat.in-progress .num { color: var(--amber); }
-  .stat.completed .num { color: var(--green); }
-  .stat-bar {
-    background: var(--panel-2);
+  .tile .num { font-size: 28px; font-weight: 700; line-height: 1.1; }
+  .tile .label { font-size: 12px; margin-top: 4px; }
+  .tile.untreated { border-color: var(--red); }
+  .tile.untreated .num, .tile.untreated .label { color: var(--red); }
+  .tile.in-progress { border-color: var(--yellow); }
+  .tile.in-progress .num, .tile.in-progress .label { color: #b7791f; }
+  .tile.completed { border-color: var(--green); }
+  .tile.completed .num, .tile.completed .label { color: var(--green); }
+
+  .status-changer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #f8fafc;
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    flex-wrap: wrap;
   }
-  .stat-bar .bar-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-  .progress-track { height: 10px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden; display: flex; margin-bottom: 10px; }
-  .progress-track .seg { height: 100%; }
-  .seg.untreated { background: var(--red); }
-  .seg.in-progress { background: var(--amber); }
-  .seg.completed { background: var(--green); }
-  .status-changer { display: flex; gap: 8px; align-items: center; }
+  .status-changer .sc-label { font-size: 12px; font-weight: 700; color: #2d3446; text-transform: uppercase; letter-spacing: 0.5px; }
   .status-changer select {
-    flex: 1;
-    background: var(--bg);
+    flex: 1; min-width: 150px;
+    background: #fff;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     color: var(--text);
-    padding: 7px 9px;
+    padding: 8px 9px;
     font-size: 12px;
   }
   .status-changer button {
-    background: var(--panel);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    border-radius: 6px;
-    padding: 7px 12px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
   }
+  .status-changer button:hover { background: var(--navy-deep); }
+
   footer { text-align: center; color: var(--muted); font-size: 11px; margin-top: 4px; }
 </style>
 </head>
 <body>
 
-<header>
+<div class="topbar">
   <h1>ISMS Risk Treatment Manager</h1>
   <span class="tag">// risk register review console</span>
   <span class="demo-note">Sample data only — nothing is saved between visits.</span>
-</header>
+</div>
 
 <section id="section-register">
-  <h2>1 · Risk Register</h2>
+  <h2>Risk Register</h2>
   <p class="purpose">All registered risks at a glance. Select a risk card to review and treat it below.</p>
   <div class="register-controls">
     <input type="search" id="searchInput" placeholder="Search risk by name or keyword…" aria-label="Search risks">
@@ -307,7 +334,7 @@
 </section>
 
 <section id="section-treatment">
-  <h2>2 · Treatment Plan</h2>
+  <h2>Treatment Plan</h2>
   <p class="purpose">Choose the right treatment for the selected risk and apply it.</p>
   <div class="treatment-layout">
     <div class="treatment-options" id="treatmentOptions"></div>
@@ -320,20 +347,35 @@
 </section>
 
 <section id="section-summary">
-  <h2>3 · Status Summary</h2>
-  <p class="purpose">Overall treatment progress. Change a risk's status to update the counts.</p>
+  <h2>Status Summary</h2>
+  <p class="purpose">Overall risk treatment progress. Change a risk's status to update the counts.</p>
   <div class="summary-layout">
-    <div class="stat untreated"><div class="num" id="countUntreated">0</div><div class="label">Untreated</div></div>
-    <div class="stat in-progress"><div class="num" id="countInProgress">0</div><div class="label">In Progress</div></div>
-    <div class="stat completed"><div class="num" id="countCompleted">0</div><div class="label">Completed</div></div>
-    <div class="stat-bar">
-      <div class="bar-label">Progress overview</div>
-      <div class="progress-track">
-        <div class="seg untreated" id="segUntreated"></div>
-        <div class="seg in-progress" id="segInProgress"></div>
-        <div class="seg completed" id="segCompleted"></div>
+    <div class="progress-card">
+      <div class="donut-wrap">
+        <svg width="130" height="130" viewBox="0 0 130 130">
+          <circle cx="65" cy="65" r="52" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="16"></circle>
+          <circle id="donutArc" cx="65" cy="65" r="52" fill="none" stroke="#27ae60" stroke-width="16"
+                  stroke-linecap="round" stroke-dasharray="0 999"></circle>
+        </svg>
+        <div class="donut-center">
+          <div class="pct" id="donutPct">0%</div>
+          <div class="pct-label">Completed</div>
+        </div>
+      </div>
+      <div class="progress-info">
+        <div class="pi-title">Treatment Progress</div>
+        <div class="chip">ISMS</div>
+        <div class="pi-sub"><strong id="doneOfTotal">0 of 0</strong> risks fully treated</div>
+      </div>
+    </div>
+    <div class="tiles-column">
+      <div class="tiles-row">
+        <div class="tile completed"><div class="num" id="countCompleted">0</div><div class="label">Completed<br>Risks</div></div>
+        <div class="tile in-progress"><div class="num" id="countInProgress">0</div><div class="label">In Progress<br>Risks</div></div>
+        <div class="tile untreated"><div class="num" id="countUntreated">0</div><div class="label">Untreated<br>Risks</div></div>
       </div>
       <div class="status-changer">
+        <span class="sc-label">Update status</span>
         <select id="statusTarget" aria-label="Pick a risk to update"></select>
         <select id="newStatus" aria-label="New status">
           <option value="Untreated">Untreated</option>
@@ -495,7 +537,7 @@ function renderTreatmentSection() {
       '<div class="chosen-title">' + t.name + suffix + "</div>" +
       "<div>" + t.desc + "</div>";
   } else {
-    chosen.textContent = "No treatment plan assigned yet. Pick an option on the left and apply it.";
+    chosen.innerHTML = '<span class="chip">No plan yet</span><div>No treatment plan assigned. Pick an option on the left and apply it.</div>';
   }
 
   applyBtn.disabled = !pendingTreatmentId;
@@ -518,15 +560,20 @@ function applyTreatment() {
 function renderSummary() {
   const counts = { "Untreated": 0, "In Progress": 0, "Completed": 0 };
   risks.forEach((r) => counts[r.status]++);
-  const total = risks.length || 1;
+  const total = risks.length;
+  const done = counts["Completed"];
+  const pct = total ? Math.round((done / total) * 100) : 0;
 
   $("countUntreated").textContent = counts["Untreated"];
   $("countInProgress").textContent = counts["In Progress"];
   $("countCompleted").textContent = counts["Completed"];
+  $("donutPct").textContent = pct + "%";
+  $("doneOfTotal").textContent = done + " of " + total;
 
-  $("segUntreated").style.width = (counts["Untreated"] / total) * 100 + "%";
-  $("segInProgress").style.width = (counts["In Progress"] / total) * 100 + "%";
-  $("segCompleted").style.width = (counts["Completed"] / total) * 100 + "%";
+  // donut arc: r=52, circumference = 2*pi*52 ≈ 326.7
+  const C = 2 * Math.PI * 52;
+  const arc = document.getElementById("donutArc");
+  arc.setAttribute("stroke-dasharray", (C * pct / 100).toFixed(1) + " " + C.toFixed(1));
 }
 
 function renderStatusTargetOptions() {
